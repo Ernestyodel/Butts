@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUTTS 🍑</title>
+<title>BUTT CHAOS 🍑🔥</title>
 
 <style>
 body {
@@ -14,8 +14,9 @@ body {
   align-items: center;
   background: radial-gradient(circle, #000, #1a001f);
   overflow: hidden;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   color: white;
+  transition: background 0.2s;
 }
 
 .container {
@@ -23,68 +24,67 @@ body {
   position: relative;
 }
 
-/* BUTT */
+/* GIF */
 .butt {
   width: 230px;
   cursor: pointer;
-  animation: float 2.5s ease-in-out infinite;
-  transition: transform 0.1s;
+  animation: float 2s infinite ease-in-out;
+  filter: drop-shadow(0 0 20px hotpink);
 }
 
-/* floating idle */
+/* float */
 @keyframes float {
   0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
 }
 
-/* smooth jiggle */
+/* jiggle */
 .jiggle {
-  animation: jiggle 0.6s ease;
+  animation: jiggle 0.5s ease;
 }
-
 @keyframes jiggle {
   0% { transform: scale(1,1); }
-  25% { transform: scale(1.2,0.8); }
-  50% { transform: scale(0.9,1.2); }
-  75% { transform: scale(1.1,0.9); }
+  25% { transform: scale(1.3,0.7); }
+  50% { transform: scale(0.8,1.3); }
+  75% { transform: scale(1.2,0.8); }
   100% { transform: scale(1,1); }
+}
+
+/* shake screen */
+.shake {
+  animation: shake 0.2s;
+}
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(-8px,4px); }
+  50% { transform: translate(8px,-4px); }
+  75% { transform: translate(-4px,4px); }
+  100% { transform: translate(0); }
 }
 
 /* counter */
 .counter {
   margin-top: 15px;
-  font-size: 24px;
+  font-size: 26px;
   color: hotpink;
 }
 
-/* text */
-.text {
-  margin-top: 8px;
-  opacity: 0.7;
-}
-
-/* button */
-button {
-  margin-top: 15px;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 6px;
-  background: hotpink;
-  color: white;
-  font-size: 14px;
+/* combo */
+.combo {
+  font-size: 16px;
+  color: yellow;
 }
 
 /* reactions */
 .pop {
   position: absolute;
-  font-size: 24px;
+  font-size: 22px;
   animation: popUp 1s forwards;
 }
-
 @keyframes popUp {
   0% { opacity: 0; transform: translateY(0) scale(0.5); }
-  50% { opacity: 1; transform: translateY(-40px) scale(1.3); }
-  100% { opacity: 0; transform: translateY(-80px) scale(1); }
+  50% { opacity: 1; transform: translateY(-40px) scale(1.4); }
+  100% { opacity: 0; transform: translateY(-80px); }
 }
 
 /* particles */
@@ -96,12 +96,16 @@ button {
   border-radius: 50%;
   animation: explode 0.8s linear forwards;
 }
-
 @keyframes explode {
   to {
     transform: translate(var(--x), var(--y));
     opacity: 0;
   }
+}
+
+/* rage mode */
+.rage {
+  background: radial-gradient(circle, red, black) !important;
 }
 </style>
 </head>
@@ -110,37 +114,50 @@ button {
 
 <div class="container" id="container">
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Peach_emoji.png"
-     class="butt"
-     id="butt">
+<img src="butt.gif" class="butt" id="butt">
 
-<div class="counter" id="counter">0 taps</div>
-<div class="text">tap it 😏</div>
-
-<button onclick="shareScore()">Share 🔥</button>
+<div class="counter" id="counter">0</div>
+<div class="combo" id="combo"></div>
 
 </div>
 
-<!-- sound -->
 <audio id="sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
 
 <script>
 const butt = document.getElementById("butt");
 const counter = document.getElementById("counter");
+const comboText = document.getElementById("combo");
 const container = document.getElementById("container");
 const sound = document.getElementById("sound");
 
 let count = 0;
+let combo = 1;
+let lastTap = 0;
 
-const reactions = ["😳","😂","🔥","🍑","😏","💀","🤣","AYOO","WILD"];
+const reactions = ["🔥","😂","🍑","😳","😏","💀","WILD"];
 
 butt.addEventListener("click", () => {
-  count++;
-  counter.innerText = count + " taps";
+  let now = Date.now();
+
+  // combo system
+  if (now - lastTap < 300) {
+    combo++;
+  } else {
+    combo = 1;
+  }
+  lastTap = now;
+
+  count += combo;
+  counter.innerText = count;
+  comboText.innerText = "x" + combo;
 
   // jiggle
   butt.classList.add("jiggle");
-  setTimeout(() => butt.classList.remove("jiggle"), 600);
+  setTimeout(()=>butt.classList.remove("jiggle"),500);
+
+  // screen shake
+  document.body.classList.add("shake");
+  setTimeout(()=>document.body.classList.remove("shake"),200);
 
   // sound
   sound.currentTime = 0;
@@ -149,45 +166,42 @@ butt.addEventListener("click", () => {
   // vibration
   if (navigator.vibrate) navigator.vibrate(40);
 
-  // floating emoji
-  const pop = document.createElement("div");
-  pop.className = "pop";
-  pop.innerText = reactions[Math.floor(Math.random()*reactions.length)];
-  pop.style.left = Math.random()*200 + "px";
-  pop.style.top = "0px";
-  container.appendChild(pop);
-  setTimeout(() => pop.remove(), 1000);
+  // flash
+  document.body.style.background = "radial-gradient(circle, #ff00cc, #000)";
+  setTimeout(()=>{
+    document.body.style.background = "radial-gradient(circle, #000, #1a001f)";
+  },100);
 
   // particles
-  for (let i = 0; i < 10; i++) {
-    let p = document.createElement("div");
-    p.className = "particle";
+  for (let i=0;i<10;i++){
+    let p=document.createElement("div");
+    p.className="particle";
 
-    let x = (Math.random() - 0.5) * 200 + "px";
-    let y = (Math.random() - 0.5) * 200 + "px";
+    let x=(Math.random()-0.5)*200+"px";
+    let y=(Math.random()-0.5)*200+"px";
 
-    p.style.setProperty("--x", x);
-    p.style.setProperty("--y", y);
+    p.style.setProperty("--x",x);
+    p.style.setProperty("--y",y);
 
     container.appendChild(p);
-    setTimeout(() => p.remove(), 800);
+    setTimeout(()=>p.remove(),800);
+  }
+
+  // reactions
+  let pop=document.createElement("div");
+  pop.className="pop";
+  pop.innerText=reactions[Math.floor(Math.random()*reactions.length)];
+  pop.style.left=Math.random()*200+"px";
+  pop.style.top="0px";
+
+  container.appendChild(pop);
+  setTimeout(()=>pop.remove(),1000);
+
+  // rage mode
+  if (count > 50) {
+    document.body.classList.add("rage");
   }
 });
-
-// share
-function shareScore() {
-  const text = `I tapped ${count} times 🍑🔥 Beat me!`;
-
-  if (navigator.share) {
-    navigator.share({
-      title: "BUTTS 🍑",
-      text: text,
-      url: window.location.href
-    });
-  } else {
-    alert(text);
-  }
-}
 </script>
 
 </body>
