@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BUTTS</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +20,7 @@ box-sizing:border-box;
 }
 
 body{
-background:black;
+background:#000;
 color:white;
 font-family:'Montserrat',sans-serif;
 overflow-x:hidden;
@@ -271,6 +274,7 @@ opacity:0;
 }
 
 </style>
+
 </head>
 
 <body>
@@ -313,27 +317,27 @@ opacity:0;
 
 <div class="gallery">
 
-<video autoplay muted loop playsinline>
+<video class="gallery-video" muted loop playsinline>
 <source src="1001755401.mp4" type="video/mp4">
 </video>
 
-<video autoplay muted loop playsinline>
+<video class="gallery-video" muted loop playsinline>
 <source src="1001755400.mp4" type="video/mp4">
 </video>
 
-<video autoplay muted loop playsinline>
+<video class="gallery-video" muted loop playsinline>
 <source src="1001755399.mp4" type="video/mp4">
 </video>
 
-<video autoplay muted loop playsinline>
+<video class="gallery-video" muted loop playsinline>
 <source src="1001755398.mp4" type="video/mp4">
 </video>
 
-<video autoplay muted loop playsinline>
+<video class="gallery-video" muted loop playsinline>
 <source src="1001755397.mp4" type="video/mp4">
 </video>
 
-<video autoplay muted loop playsinline>
+<video class="gallery-video" muted loop playsinline>
 <source src="1001755396.mp4" type="video/mp4">
 </video>
 
@@ -347,7 +351,7 @@ opacity:0;
 
 <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
 
-<br>
+<br><br>
 
 <audio controls autoplay loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
@@ -393,7 +397,7 @@ opacity:0;
 GENERATE
 </button>
 
-<br>
+<br><br>
 
 <video id="randomVideo" autoplay muted loop playsinline>
 <source src="1001755396.mp4" type="video/mp4">
@@ -416,6 +420,12 @@ const buttVideos = [
 "1001755396.mp4"
 ];
 
+document.querySelectorAll('.gallery-video').forEach(video => {
+
+video.play().catch(() => {});
+
+});
+
 function generateButt(){
 
 const video = document.getElementById("randomVideo");
@@ -423,6 +433,8 @@ const video = document.getElementById("randomVideo");
 const random = buttVideos[Math.floor(Math.random()*buttVideos.length)];
 
 video.src = random;
+
+video.play();
 
 spawnPopup("MEGA BUTT GENERATED 🍑");
 
@@ -501,4 +513,5 @@ sparkle.remove();
 </script>
 
 </body>
+
 </html>
