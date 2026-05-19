@@ -1,206 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BUTT CHAOS 🍑🔥</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>BUTTS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle, #000, #1a001f);
-  overflow: hidden;
-  font-family: Arial;
-  color: white;
-  transition: background 0.2s;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-.container {
-  text-align: center;
-  position: relative;
+body{
+font-family:'Montserrat',sans-serif;
+background:#000;
+color:white;
+overflow-x:hidden;
+cursor:crosshair;
 }
 
-/* GIF */
-.butt {
-  width: 230px;
-  cursor: pointer;
-  animation: float 2s infinite ease-in-out;
-  filter: drop-shadow(0 0 20px hotpink);
+body::before{
+content:'';
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(circle at 20% 20%,rgba(255,255,255,0.05),transparent 20%),
+radial-gradient(circle at 80% 80%,rgba(255,255,255,0.05),transparent 20%);
+z-index:-2;
 }
 
-/* float */
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+position:relative;
+overflow:hidden;
 }
 
-/* jiggle */
-.jiggle {
-  animation: jiggle 0.5s ease;
-}
-@keyframes jiggle {
-  0% { transform: scale(1,1); }
-  25% { transform: scale(1.3,0.7); }
-  50% { transform: scale(0.8,1.3); }
-  75% { transform: scale(1.2,0.8); }
-  100% { transform: scale(1,1); }
-}
-
-/* shake screen */
-.shake {
-  animation: shake 0.2s;
-}
-@keyframes shake {
-  0% { transform: translate(0); }
-  25% { transform: translate(-8px,4px); }
-  50% { transform: translate(8px,-4px); }
-  75% { transform: translate(-4px,4px); }
-  100% { transform: translate(0); }
+.hero h1{
+font-size:clamp(4rem,12vw,10rem);
+font-family:'Luckiest Guy',cursive;
+letter-spacing:8px;
+animation:shake 2s infinite;
+text-shadow:
+0 0 10px #fff,
+0 0 20px #fff,
+0 0 40px #fff;
 }
 
-/* counter */
-.counter {
-  margin-top: 15px;
-  font-size: 26px;
-  color: hotpink;
+.hero p{
+font-size:1.3rem;
+margin-top:20px;
+opacity:0.8;
 }
 
-/* combo */
-.combo {
-  font-size: 16px;
-  color: yellow;
+.hero-buttons{
+margin-top:35px;
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
 }
 
-/* reactions */
-.pop {
-  position: absolute;
-  font-size: 22px;
-  animation: popUp 1s forwards;
-}
-@keyframes popUp {
-  0% { opacity: 0; transform: translateY(0) scale(0.5); }
-  50% { opacity: 1; transform: translateY(-40px) scale(1.4); }
-  100% { opacity: 0; transform: translateY(-80px); }
-}
-
-/* particles */
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: pink;
-  border-radius: 50%;
-  animation: explode 0.8s linear forwards;
-}
-@keyframes explode {
-  to {
-    transform: translate(var(--x), var(--y));
-    opacity: 0;
-  }
+.btn{
+padding:15px 35px;
+border:2px solid white;
+background:white;
+color:black;
+font-weight:900;
+text-decoration:none;
+border-radius:50px;
+transition:0.3s;
+font-size:1rem;
 }
 
-/* rage mode */
-.rage {
-  background: radial-gradient(circle, red, black) !important;
+.btn:hover{
+transform:scale(1.1) rotate(-3deg);
+background:black;
+color:white;
+box-shadow:0 0 20px white;
+}
+
+.main-gif{
+width:300px;
+max-width:80vw;
+margin-top:40px;
+animation:bounce 2s infinite;
+filter:drop-shadow(0 0 30px white);
+}
+
+.floating{
+position:absolute;
+width:120px;
+pointer-events:none;
+animation:float 12s linear infinite;
+opacity:0.85;
+}
+
+.section{
+padding:100px 20px;
+max-width:1300px;
+margin:auto;
+}
+
+.section-title{
+font-size:4rem;
+font-family:'Luckiest Guy',cursive;
+margin-bottom:50px;
+text-align:center;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:25px;
+border:3px solid white;
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05) rotate(2deg);
+box-shadow:0 0 30px white;
+}
+
+.tokenomics{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:#111;
+border:2px solid white;
+padding:35px;
+border-radius:30px;
+transition:0.4s;
+}
+
+.card:hover{
+transform:translateY(-10px) rotate(-1deg);
+box-shadow:0 0 30px rgba(255,255,255,0.5);
+}
+
+.card h3{
+font-size:2rem;
+margin-bottom:15px;
+}
+
+.music-player{
+text-align:center;
+}
+
+.music-player img{
+width:260px;
+animation:spin 8s linear infinite;
+margin-bottom:25px;
+}
+
+.generate-box{
+text-align:center;
+}
+
+#randomButt{
+width:300px;
+max-width:80vw;
+border-radius:25px;
+border:3px solid white;
+margin-top:25px;
+}
+
+footer{
+padding:60px 20px;
+text-align:center;
+font-size:1.2rem;
+opacity:0.7;
+}
+
+.marquee{
+width:100%;
+overflow:hidden;
+white-space:nowrap;
+border-top:2px solid white;
+border-bottom:2px solid white;
+padding:15px 0;
+margin-top:40px;
+}
+
+.marquee span{
+display:inline-block;
+animation:marquee 12s linear infinite;
+font-size:2rem;
+font-weight:900;
+}
+
+@keyframes shake{
+0%,100%{transform:translateX(0)}
+25%{transform:translateX(-4px) rotate(-1deg)}
+50%{transform:translateX(4px) rotate(1deg)}
+75%{transform:translateX(-2px)}
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-25px)}
+}
+
+@keyframes float{
+0%{
+transform:translateY(110vh) rotate(0deg);
+}
+100%{
+transform:translateY(-150px) rotate(360deg);
+}
+}
+
+@keyframes spin{
+from{transform:rotate(0deg)}
+to{transform:rotate(360deg)}
+}
+
+@keyframes marquee{
+0%{transform:translateX(100%)}
+100%{transform:translateX(-100%)}
+}
+
+.popup{
+position:fixed;
+background:white;
+color:black;
+padding:20px;
+border-radius:20px;
+font-weight:900;
+box-shadow:0 0 30px rgba(255,255,255,0.6);
+animation:popup 1.5s forwards;
+pointer-events:none;
+z-index:9999;
+}
+
+@keyframes popup{
+0%{
+transform:scale(0);
+opacity:0;
+}
+30%{
+transform:scale(1.2);
+opacity:1;
+}
+100%{
+transform:translateY(-100px);
+opacity:0;
+}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container" id="container">
+<div class="hero">
 
-<img src="butt.gif" class="butt" id="butt">
+<img class="floating" src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif" style="left:5%;animation-delay:0s;">
+<img class="floating" src="https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif" style="left:25%;animation-delay:4s;">
+<img class="floating" src="https://media.giphy.com/media/3o7TKsQ8UQK5QcU0e4/giphy.gif" style="left:65%;animation-delay:2s;">
+<img class="floating" src="https://media.giphy.com/media/l4FGpPki5v2Bcd6Ss/giphy.gif" style="left:85%;animation-delay:6s;">
 
-<div class="counter" id="counter">0</div>
-<div class="combo" id="combo"></div>
+<h1>BUTTS</h1>
+<p>The Most Beautiful Butts On TON</p>
+
+<div class="hero-buttons">
+<a href="#" class="btn">BUY BUTTS</a>
+<a href="#" class="btn">JOIN TELEGRAM</a>
+<a href="#" class="btn">FOLLOW X</a>
+</div>
+
+<img
+class="main-gif"
+src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
+/>
 
 </div>
 
-<audio id="sound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+<div class="marquee">
+<span>
+🍑 BUTTS TO THE MOON 🍑 SHAKE THE CHEEKS 🍑 LP LOCKED 🍑 MEMES FOREVER 🍑
+</span>
+</div>
+
+<section class="section">
+<h2 class="section-title">BUTT GALLERY</h2>
+
+<div class="gallery">
+<img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif">
+<img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+<img src="https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif">
+<img src="https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif">
+<img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+<img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif">
+</div>
+</section>
+
+<section class="section music-player">
+<h2 class="section-title">BUTT ANTHEM</h2>
+
+<img src="https://cdn-icons-png.flaticon.com/512/727/727245.png">
+
+<audio controls autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+</section>
+
+<section class="section">
+<h2 class="section-title">TOKENOMICS</h2>
+
+<div class="tokenomics">
+<div class="card">
+<h3>100%</h3>
+<p>Pure cheeks.</p>
+</div>
+
+<div class="card">
+<h3>0%</h3>
+<p>Fear and sadness.</p>
+</div>
+
+<div class="card">
+<h3>LP</h3>
+<p>Locked deep in the crack.</p>
+</div>
+
+<div class="card">
+<h3>BUYBACK</h3>
+<p>Powered by maximum butt energy.</p>
+</div>
+</div>
+</section>
+
+<section class="section generate-box">
+<h2 class="section-title">GENERATE YOUR BUTT</h2>
+
+<button class="btn" onclick="generateButt()">
+GENERATE BUTT
+</button>
+
+<br>
+
+<img
+id="randomButt"
+src="https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif"
+>
+</section>
+
+<footer>
+POWERED BY CHEEKS 🍑
+</footer>
 
 <script>
-const butt = document.getElementById("butt");
-const counter = document.getElementById("counter");
-const comboText = document.getElementById("combo");
-const container = document.getElementById("container");
-const sound = document.getElementById("sound");
+const buttImages = [
+'https://media.giphy.com/media/ICOgUNjpvO0PC/giphy.gif',
+'https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif',
+'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif',
+'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif',
+'https://media.giphy.com/media/5VKbvrjxpVJCM/giphy.gif'
+];
 
-let count = 0;
-let combo = 1;
-let lastTap = 0;
+function generateButt(){
+const img = document.getElementById('randomButt');
+const random = buttImages[Math.floor(Math.random()*buttImages.length)];
+img.src = random;
 
-const reactions = ["🔥","😂","🍑","😳","😏","💀","WILD"];
+shakeScreen();
+spawnPopup('MEGA BUTT GENERATED 🍑');
+}
 
-butt.addEventListener("click", () => {
-  let now = Date.now();
+function shakeScreen(){
+document.body.style.transform = 'translateX(10px)';
 
-  // combo system
-  if (now - lastTap < 300) {
-    combo++;
-  } else {
-    combo = 1;
-  }
-  lastTap = now;
+setTimeout(()=>{
+document.body.style.transform = 'translateX(-10px)';
+},100);
 
-  count += combo;
-  counter.innerText = count;
-  comboText.innerText = "x" + combo;
+setTimeout(()=>{
+document.body.style.transform = 'translateX(0px)';
+},200);
+}
 
-  // jiggle
-  butt.classList.add("jiggle");
-  setTimeout(()=>butt.classList.remove("jiggle"),500);
+function spawnPopup(text){
+const popup = document.createElement('div');
+popup.className = 'popup';
+popup.innerText = text;
 
-  // screen shake
-  document.body.classList.add("shake");
-  setTimeout(()=>document.body.classList.remove("shake"),200);
+popup.style.left = Math.random()*80 + '%';
+popup.style.top = Math.random()*80 + '%';
 
-  // sound
-  sound.currentTime = 0;
-  sound.play();
+document.body.appendChild(popup);
 
-  // vibration
-  if (navigator.vibrate) navigator.vibrate(40);
+setTimeout(()=>{
+popup.remove();
+},1500);
+}
 
-  // flash
-  document.body.style.background = "radial-gradient(circle, #ff00cc, #000)";
-  setTimeout(()=>{
-    document.body.style.background = "radial-gradient(circle, #000, #1a001f)";
-  },100);
+window.addEventListener('click',()=>{
+spawnPopup('🍑');
+});
 
-  // particles
-  for (let i=0;i<10;i++){
-    let p=document.createElement("div");
-    p.className="particle";
+window.addEventListener('mousemove',(e)=>{
+const sparkle = document.createElement('div');
 
-    let x=(Math.random()-0.5)*200+"px";
-    let y=(Math.random()-0.5)*200+"px";
+sparkle.style.position='fixed';
+sparkle.style.left=e.clientX+'px';
+sparkle.style.top=e.clientY+'px';
+sparkle.style.width='10px';
+sparkle.style.height='10px';
+sparkle.style.background='white';
+sparkle.style.borderRadius='50%';
+sparkle.style.pointerEvents='none';
+sparkle.style.opacity='0.8';
+sparkle.style.zIndex='9999';
 
-    p.style.setProperty("--x",x);
-    p.style.setProperty("--y",y);
+sparkle.animate([
+{transform:'scale(1)',opacity:1},
+{transform:'scale(0)',opacity:0}
+],{
+duration:500
+});
 
-    container.appendChild(p);
-    setTimeout(()=>p.remove(),800);
-  }
+document.body.appendChild(sparkle);
 
-  // reactions
-  let pop=document.createElement("div");
-  pop.className="pop";
-  pop.innerText=reactions[Math.floor(Math.random()*reactions.length)];
-  pop.style.left=Math.random()*200+"px";
-  pop.style.top="0px";
-
-  container.appendChild(pop);
-  setTimeout(()=>pop.remove(),1000);
-
-  // rage mode
-  if (count > 50) {
-    document.body.classList.add("rage");
-  }
+setTimeout(()=>sparkle.remove(),500);
 });
 </script>
 
